@@ -38,7 +38,7 @@ $(NAME): 	$(OBJ1) $(OBJ2)
 
 clean:
 			@rm srcs/*.o 2>/dev/null || true
-			@rm checker/*.o 2>/dev/null || true
+			@rm checker_srcs/*.o 2>/dev/null || true
 			@echo "\033[31m > \033[1mobjs/*\033[0;31m delete.\033[0m"
 
 fclean:		clean
