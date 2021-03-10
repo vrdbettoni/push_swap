@@ -1,6 +1,4 @@
-
-#include "push_swap.h"
-
+#include "checker.h"
 
 void push_front(t_stack *stack, int nb)
 {
@@ -20,8 +18,8 @@ void push_front(t_stack *stack, int nb)
         new->next = new;
         new->prev = new;
     }
-    stack->node = new;
     stack->size++;
+    stack->node = new;
 }
 
 t_stack *init_stack(char **av, bool main)
@@ -31,10 +29,8 @@ t_stack *init_stack(char **av, bool main)
 
     i = 1;
     stack = malloc(sizeof(t_stack));
-    stack->size = 0;
     stack->node = NULL;
-    stack->first_lap = true;
-    stack->value = true;
+    stack->size = 0;
     while (main && av[i])
         push_front(stack, ft_atoi(av[i++]));
     return (stack);
@@ -57,15 +53,9 @@ void swap_node(t_stack *left, t_stack *right)
         right->node->nb = right->node->next->nb;
         right->node->next->nb = tmp;
     }
-    if (left && right)
-        write (1, "ss\n", 3);
-    else if (left)
-        write (1, "sa\n", 3);
-    else if (right)
-        write (1, "sb\n", 3);
 }
 
-void transfer(t_stack *left, t_stack *right, char *s)
+void transfer(t_stack *left, t_stack *right)
 {
     t_node *tmp;
 
@@ -76,11 +66,11 @@ void transfer(t_stack *left, t_stack *right, char *s)
     left->node->next->prev = left->node->prev;
     left->node = left->node->next;
     push_front(right, tmp->nb);
-    left->size--;
-    if (!left->size)
+    left->size--;    
+    if (left->size == 0)
         left->node = NULL;
+
     free(tmp);
-    write(1, s, 3);
 }
 
 void    rotate(t_stack *left, t_stack *right, bool direction)
@@ -89,20 +79,8 @@ void    rotate(t_stack *left, t_stack *right, bool direction)
         left->node = left->node->next;
     if (direction && right)
         right->node = right->node->next;
-    if (direction && left && right)
-        write (1, "rr\n", 3);
-    else if (direction && left)
-        write (1, "ra\n", 3);
-    else if (direction && right)
-        write (1, "rb\n", 3);
     if (!direction && left)
         left->node = left->node->prev;
     if (!direction && right)
         right->node = right->node->prev;
-    if (!direction && left && right)
-        write (1, "rrr\n", 4);
-    else if (!direction && left)
-        write (1, "rra\n", 4);
-    else if (!direction && right)
-        write (1, "rrb\n", 4);
 }

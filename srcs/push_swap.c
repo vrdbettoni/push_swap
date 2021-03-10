@@ -106,8 +106,8 @@ int main(int ac, char **av)
     count = 0;
     if (ac < 2)
         return (1);
-    left = init_stack(ac, av, true);
-    right = init_stack(ac, av, false);
+    left = init_stack(av, true);
+    right = init_stack(av, false);
     if (a) debug(left, right, "At start:");
     if (left->size > 30)
         sort(left, right, left->size);
