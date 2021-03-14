@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <limits.h>
 
 typedef struct      s_node
 {
@@ -22,15 +23,17 @@ typedef struct      s_stack
 
 int get_next_line(int fd, char **line);
 
-int ft_atoi(const char *s);
+long ft_atoi(const char *s);
 bool cmp(char *s1, char *s2);
-void print(t_stack *stack);
+int ft_strlen(char *s);
+int ft_isdigit(int c);
+bool max_int(char *s);
 
 void push_front(t_stack *stack, int nb);
 t_stack *init_stack(int ac, char **av, bool main);
 void swap_node(t_stack *left, t_stack *right);
 void transfer(t_stack *left, t_stack *right);
 void    rotate(t_stack *left, t_stack *right, bool direction);
-void    choice(t_stack *left, t_stack *right, char *s);
+bool    choice(t_stack *left, t_stack *right, char *s);
 
 #endif

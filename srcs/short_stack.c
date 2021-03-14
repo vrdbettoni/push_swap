@@ -86,7 +86,6 @@ void other_stack(t_stack *left, t_stack *right)
     }
     while (right->size)
     {
-        // debug(left, right, "begin loop:");
         max_loop(right);
         if (right->way)
             while (right->node->nb != right->max)
@@ -102,6 +101,8 @@ void other_stack(t_stack *left, t_stack *right)
 
 void short_stack(t_stack *left, t_stack *right)
 {
+    if (is_sort(left, left->size))
+        return;
     if (left->size == 2)
     {
         if (left->node->nb > left->node->next->nb)

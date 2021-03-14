@@ -1,9 +1,9 @@
 #include "checker.h"
 
-int		ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int		i;
-	int		nb;
+	long	nb;
 	int		sign;
 
 	sign = 1;
@@ -24,20 +24,37 @@ int		ft_atoi(const char *str)
 
 bool cmp(char *s1, char *s2)
 {
-    int i;
+	int i;
 
-    i = 0;
-    if (strcmp(s1, s2))
-        return false;
-    return true;
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i] == 0 ? true : false);
 }
 
-void print(t_stack *stack)
+int	ft_isdigit(int c)
 {
-    if (stack->node)
-    for (int i = 0; i < stack->size; ++i){
-        printf("%d ", stack->node->nb);
-        stack->node = stack->node->next;
-    }
-    printf("\n");
+	if (c >= '0' && c <= '9')
+		return (true);
+	return (false);
+}
+
+int ft_strlen(char *s)
+{
+    int i;
+
+	i = 0;
+    while (s[i])
+        i++;
+    return i;
+}
+
+bool max_int(char *s)
+{
+	long test;
+
+	test = ft_atoi(s);
+	if (test > INT_MAX || test < INT_MIN)
+		return (true);
+	return (true);
 }

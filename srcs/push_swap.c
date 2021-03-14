@@ -48,7 +48,6 @@ void    split(t_stack *left, t_stack *right, int nb)
     bool pair;
 
     pair = nb % 2 == 0 ? true : false;
-    if (a) write(1, "In Split\n", 9);
     while (nb--)
     {
         if (pair && left->node->nb <= avg)
@@ -67,31 +66,31 @@ void    split(t_stack *left, t_stack *right, int nb)
         left->first_lap = false;
 }
 
+void short_split(t_stack *left, t_stack *right, int size)
+{
+    while (size--)
+        choice(left, right, "pb");
+}
+
 void    sort(t_stack *left, t_stack *right, int size)
 {
     int tmp = size;
 
-    if (a)sleep(1);
-    if(a) printf("###############################\n");
-    if (a) printf("New lap with size %d\n", size);
     if (is_sort(left, size))
     {
-        if (a) printf("IT'S SORT\n");
         if (!is_sort(left, left->size))
             while (tmp--)
                 choice(left, right, "ra");
         return;
     }
-    if(a) debug(left, right, "At start");
-    split(left, right, size);
-    if(a) debug(left, right, "After Split");
-    if (right->size <= 27){
+    if (size > 20)
+        split(left, right, size);
+    else
+        short_split(left, right, size);
+    if (right->size <= 27)
         speed_sort(left, right);
-        if(a) debug(left, right, "After short sort");
-    }
     while (right->node)
         choice(left, right, "pa");
-    if(a) debug(left, right, "Before next loop");
     sort(left, right, size / 2);
     if (size % 2)
         size++;
@@ -108,15 +107,8 @@ int main(int ac, char **av)
         return (1);
     left = init_stack(ac, av, true);
     right = init_stack(ac, av, false);
-    if (a) debug(left, right, "At start:");
-// debug(left, right, "At start:");
     if (left->size > 30)
         sort(left, right, left->size);
     else 
         short_stack(left, right);
-    // if (left->node->nb > left->node->next->nb)
-        // choice(left, right, "ra");
-    // debug(left, right, "End:");
-    // printf("\n[ %d ]\n", count);
-    // return count;
 }

@@ -30,7 +30,7 @@ $(NAME): 	$(OBJ1) $(OBJ2)
 			@mv ./srcs/push_swap ./
 			@mv ./checker_srcs/checker ./
 
-			@echo "\033[32m > \033[1m$(NAME)\033[0;32m created !\033[0m"
+			@echo "\033[32m > \033[1m$(NAME)\033[0;32m and \033[1m checker\033[0;32m created !\033[0m"
 
 %/*.o:	%/*.c
 					@$(CC) $(CFLAGS) -c $< -o $@
@@ -44,7 +44,9 @@ clean:
 fclean:		clean
 			@rm -rf push_swap 2>/dev/null || true
 			@rm -rf checker 2>/dev/null || true
-			@echo "\033[31m > \033[1m$(NAME)\033[0;31m delete.\033[0m"
+			@rm -rf problem* 2>/dev/null || true
+			@rm -rf limit_arg 2>/dev/null || true
+			@echo "\033[31m > \033[1m$(NAME)\033[0;31m and \033[1mchecker\033[0;31m delete.\033[0m"
 
 re:			fclean all
 
