@@ -8,9 +8,9 @@ void    choice(t_stack *left, t_stack *right, char *s)
         swap_node(NULL, right);
     if (cmp(s, "ss"))
         swap_node(left, right);
-    if (cmp(s, "pa"))
-        transfer(left, right);
     if (cmp(s, "pb"))
+        transfer(left, right);
+    if (cmp(s, "pa"))
         transfer(right, left);
     if (cmp(s, "ra"))
         rotate(left, NULL, true);
@@ -48,10 +48,7 @@ void make_operations(t_stack *left, t_stack *right)
     {
         // printf("node: %d ", left->node->nb);
         if (left->node->nb > left->node->next->nb)
-        {
             done = false;
-            printf("Error: %d and %d\n", left->node->nb, left->node->next->nb);
-        }
         left->node = left->node->next;
         free(left->node->prev);
         left->node->prev = NULL;
@@ -74,8 +71,8 @@ int main(int ac, char **av)
 
     if (ac < 2)
         return (1);
-    left = init_stack(av, true);
-    right = init_stack(av, false);
+    left = init_stack(ac, av, true);
+    right = init_stack(ac, av, false);
     make_operations(left, right);
     free(left);
     free(right);

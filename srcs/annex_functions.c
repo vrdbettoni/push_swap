@@ -66,10 +66,10 @@ void    choice(t_stack *left, t_stack *right, char *s)
         swap_node(NULL, right);
     if (cmp(s, "ss"))
         swap_node(left, right);
-    if (cmp(s, "pa"))
-        transfer(left, right, "pa\n");
     if (cmp(s, "pb"))
-        transfer(right, left, "pb\n");
+        transfer(left, right, "pb\n");
+    if (cmp(s, "pa"))
+        transfer(right, left, "pa\n");
     if (cmp(s, "ra"))
         rotate(left, NULL, true);
     if (cmp(s, "rb"))

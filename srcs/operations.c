@@ -24,19 +24,17 @@ void push_front(t_stack *stack, int nb)
     stack->size++;
 }
 
-t_stack *init_stack(char **av, bool main)
+t_stack *init_stack(int ac, char **av, bool main)
 {
     t_stack *stack;
-    int i;
 
-    i = 1;
     stack = malloc(sizeof(t_stack));
     stack->size = 0;
     stack->node = NULL;
     stack->first_lap = true;
     stack->value = true;
-    while (main && av[i])
-        push_front(stack, ft_atoi(av[i++]));
+    while (main && --ac)
+        push_front(stack, ft_atoi(av[ac]));
     return (stack);
 }
 

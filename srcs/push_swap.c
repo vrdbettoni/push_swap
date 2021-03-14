@@ -37,7 +37,7 @@ void    speed_sort(t_stack *left, t_stack *right)
         else
             while (right->node->nb != right->max)
                 choice(left, right, "rrb");
-        choice(left, right, "pb");
+        choice(left, right, "pa");
     }
 }
 
@@ -52,9 +52,9 @@ void    split(t_stack *left, t_stack *right, int nb)
     while (nb--)
     {
         if (pair && left->node->nb <= avg)
-            choice(left, right, "pa");
+            choice(left, right, "pb");
         else if (!pair && left->node->nb < avg)
-            choice(left, right, "pa");
+            choice(left, right, "pb");
         else
         {            
             choice(left, right, "ra");
@@ -90,7 +90,7 @@ void    sort(t_stack *left, t_stack *right, int size)
         if(a) debug(left, right, "After short sort");
     }
     while (right->node)
-        choice(left, right, "pb");
+        choice(left, right, "pa");
     if(a) debug(left, right, "Before next loop");
     sort(left, right, size / 2);
     if (size % 2)
@@ -106,9 +106,10 @@ int main(int ac, char **av)
     count = 0;
     if (ac < 2)
         return (1);
-    left = init_stack(av, true);
-    right = init_stack(av, false);
+    left = init_stack(ac, av, true);
+    right = init_stack(ac, av, false);
     if (a) debug(left, right, "At start:");
+// debug(left, right, "At start:");
     if (left->size > 30)
         sort(left, right, left->size);
     else 
@@ -117,5 +118,5 @@ int main(int ac, char **av)
         // choice(left, right, "ra");
     // debug(left, right, "End:");
     // printf("\n[ %d ]\n", count);
-    return count;
+    // return count;
 }

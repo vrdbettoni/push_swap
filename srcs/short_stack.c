@@ -4,13 +4,13 @@ void stack_of_three(t_stack *left, t_stack *right)
 {
     if (left->node->nb < left->node->next->nb) // 123 132 231
     {
-        if (left->node->nb < left->node->prev->nb)
+        if (left->node->nb > left->node->prev->nb) // 231
+            choice(left, right, "rra");
+        else if (left->node->next->nb > left->node->prev->nb) // 132
         {
             choice(left, right, "rra");
             choice(left, right, "sa");
         }
-        else if (left->node->nb > left->node->prev->nb)
-            choice(left, right, "rra");
     }
     else // 312 321 213
     {
@@ -21,7 +21,7 @@ void stack_of_three(t_stack *left, t_stack *right)
             else // 213
                 choice(left, right, "sa");
         }
-        else
+        else // 321
         {
             choice(left, right, "sa");
             choice(left, right, "rra");
@@ -80,7 +80,7 @@ void other_stack(t_stack *left, t_stack *right)
     while (left->size > 2)
     {
         if (left->node->nb != max[0] && left->node->nb != max[1])
-            choice(left, right, "pa");
+            choice(left, right, "pb");
         else
             choice(left, right, "ra");
     }
@@ -96,7 +96,7 @@ void other_stack(t_stack *left, t_stack *right)
                 smart_rotate(left, right, false);
         if (left->node->nb > left->node->next->nb)
             choice(left, right, "ra");
-        choice(left, right, "pb");
+        choice(left, right, "pa");
     }
 }
 

@@ -27,7 +27,7 @@ bool cmp(char *s1, char *s2);
 void print(t_stack *stack);
 
 void push_front(t_stack *stack, int nb);
-t_stack *init_stack(char **av, bool main);
+t_stack *init_stack(int ac, char **av, bool main);
 void swap_node(t_stack *left, t_stack *right);
 void transfer(t_stack *left, t_stack *right);
 void    rotate(t_stack *left, t_stack *right, bool direction);
