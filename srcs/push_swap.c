@@ -1,31 +1,5 @@
 #include "push_swap.h"
-bool a = false;
 
-void debug(t_stack *left, t_stack *right, char *s)
-{
-    printf("-------------------------------------\n");
-    printf("%s:\n", s);
-    if (left){
-        printf("Left: ");
-        if (left->node){
-            for (int i = 0; i < left->size; ++i){
-                printf("%d ", left->node->nb);
-                left->node = left->node->next;
-            }
-        }
-    printf("\n");
-    }
-    if (right){
-        printf("Right: ");
-        if (right->node){
-            for (int i = 0; i < right->size; ++i){
-                printf("%d ", right->node->nb);
-                right->node = right->node->next;
-            }
-        }
-    printf("\n-------------------------------------\n");
-    }
-}
 void    speed_sort(t_stack *left, t_stack *right)
 {
     while (right->size)
@@ -102,7 +76,6 @@ int main(int ac, char **av)
     t_stack *left;
     t_stack *right;
 
-    count = 0;
     if (ac < 2)
         return (1);
     left = init_stack(ac, av, true);
@@ -111,4 +84,6 @@ int main(int ac, char **av)
         sort(left, right, left->size);
     else 
         short_stack(left, right);
+    free_all(left);
+    free(right);
 }

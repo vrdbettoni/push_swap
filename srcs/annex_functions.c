@@ -5,6 +5,7 @@ void max_loop(t_stack *right)
     int i;
     int tmp;
 
+    tmp = 0;
     right->way = true;
     i = right->size;
     right->max = right->node->nb;
@@ -59,7 +60,6 @@ int     get_pivot(t_stack *left, int nb)
 
 void    choice(t_stack *left, t_stack *right, char *s)
 {
-    count++;
     if (cmp(s, "sa"))
         swap_node(left, NULL);
     if (cmp(s, "sb"))
@@ -82,4 +82,20 @@ void    choice(t_stack *left, t_stack *right, char *s)
         rotate(NULL, right, false);
     if (cmp(s, "rrr"))
         rotate(left, right, false);
+}
+
+void free_all(t_stack *stack)
+{
+    if (stack->node)
+        stack->node->prev->next = NULL;
+    while (stack->node->next)
+    {
+        stack->node = stack->node->next;
+        free(stack->node->prev);
+        stack->node->prev = NULL;
+    }
+    free(stack->node);
+    stack->node = NULL;
+    free(stack);
+    stack = NULL;
 }

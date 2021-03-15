@@ -48,7 +48,7 @@ bool     input_error(int ac, char **av)
 			i++;
 		}
         if (max_int(av[ac]))
-            return (true);
+				return (true);
 	}
 	return (false);
 }
@@ -82,18 +82,17 @@ bool    choice(t_stack *left, t_stack *right, char *s)
     return false;
 }
 
-void make_operations(t_stack *left, t_stack *right)
+void make_operations(t_stack *left, t_stack *right, bool done)
 {
     char    *line;
-    bool    done;
     bool    err;
 
-    done = true;
     while (get_next_line(0, &line))
     {
         err = choice(left, right, line);
         free(line);
     }
+    free(line);
     left->node->prev->next = NULL;
     while (left->node->next)
     {
@@ -126,7 +125,7 @@ int main(int ac, char **av)
     right = init_stack(ac, av, false);
     if (duplicate_number(left))
         return (write(1, "Error\n", 6));
-    make_operations(left, right);
+    make_operations(left, right, true);
     free(left);
     free(right);
     return 0;

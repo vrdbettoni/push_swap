@@ -3,7 +3,7 @@ NAME		=	push_swap
 CC			=	clang
 INCL1		=	srcs/push_swap.h
 INCL2		=	checker_srcs/checker.h
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g3
 
 OBJS_PATH1	=	srcs
 OBJS_PATH2	=	checker_srcs

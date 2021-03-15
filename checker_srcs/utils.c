@@ -18,7 +18,7 @@ long	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-		nb = nb * 10 + (int)str[i++] - '0';
+		nb = nb * 10 + (long)str[i++] - '0';
 	return (nb * sign);
 }
 
@@ -56,5 +56,5 @@ bool max_int(char *s)
 	test = ft_atoi(s);
 	if (test > INT_MAX || test < INT_MIN)
 		return (true);
-	return (true);
+	return (false);
 }

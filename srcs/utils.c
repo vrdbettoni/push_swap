@@ -31,13 +31,3 @@ bool cmp(char *s1, char *s2)
 		i++;
 	return (s1[i] - s2[i] == 0 ? true : false);
 }
-
-void print(t_stack *stack)
-{
-    if (stack->node)
-    for (int i = 0; i < stack->size; ++i){
-        printf("%d ", stack->node->nb);
-        stack->node = stack->node->next;
-    }
-    printf("\n");
-}
