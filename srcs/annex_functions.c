@@ -40,22 +40,42 @@ bool    is_sort(t_stack *left, int nb)
     return ret;
 }
 
+int     next_min(t_stack *left, int nb, int prev, bool first)
+{
+    int     ret;
+    t_node *tmp;
+
+    tmp = left->node;
+    ret = INT_MAX;
+    while (nb--)
+    {
+        if (first && tmp->nb < ret)
+            ret = tmp->nb;
+        if (!first && tmp->nb < ret && tmp->nb > prev)
+            ret = tmp->nb;
+        tmp = tmp->next;
+    }
+    return (ret);
+}
+
 int     get_pivot(t_stack *left, int nb)
 {
-    float  average;
-    int    i;
-
-    i = nb;
-    average = 0;
-    while (i--)
+    int     pivot;
+    int     count;
+    
+    count = nb / 2;
+    pivot = 0;
+    while (count)
     {
-        average += left->node->nb;
-        left->node = left->node->next;
+        if (count == nb / 2)
+            pivot = next_min(left, nb, pivot, true);
+        else
+            pivot = next_min(left, nb, pivot, false);
+        --count;
+        // printf("[%d]TMP = %d\n", count, pivot);
     }
-    average = average / nb;
-    while(++i < nb)
-        left->node = left->node->prev;
-    return (average);
+    // printf("PIVOT = %d\n", pivot);
+    return (pivot);
 }
 
 void    choice(t_stack *left, t_stack *right, char *s)
