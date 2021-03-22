@@ -87,10 +87,10 @@ void    sort(t_stack *left, t_stack *right, int size)
         if (dbg) printf("PART SORT\n");
         return;
     }
-    // if (size > 20)
+    if (size > 20)
         split(left, right, size);
-    // else
-    //     short_split(left, right, size);
+    else
+        short_split(left, right, size);
     if (dbg) debug(left, right, "After Split");
     if (right->size <= 27)
         speed_sort(left, right);
@@ -113,10 +113,10 @@ int main(int ac, char **av)
         return (1);
     left = init_stack(ac, av, true);
     right = init_stack(ac, av, false);
-    // if (left->size > 30)
+    if (left->size > 30)
         sort(left, right, left->size);
-    // else 
-    //     short_stack(left, right);
+    else 
+        short_stack(left, right);
     if (dbg) debug(left, right, "End");
     free_all(left);
     free(right);

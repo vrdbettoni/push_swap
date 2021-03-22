@@ -24,19 +24,17 @@ void max_loop(t_stack *right)
 
 bool    is_sort(t_stack *left, int nb)
 {
-    int i;
     bool ret;
+    t_node *node;
 
+    node = left->node;
     ret = true;
-    i = nb;
-    while (--i)
+    while (--nb)
     {
-        if (left->node->nb > left->node->next->nb)
+        if (node->nb > node->next->nb)
             ret = false;
-        left->node = left->node->next;  
-    }
-    while (++i < nb)
-        left->node = left->node->prev;  
+        node = node->next;  
+    } 
     return ret;
 }
 
