@@ -2,9 +2,9 @@
 
 long	ft_atoi(const char *str)
 {
-	int		i;
-	long	nb;
-	int		sign;
+	int	i;
+	int	nb;
+	int	sign;
 
 	sign = 1;
 	i = 0;
@@ -18,18 +18,18 @@ long	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-		nb = nb * 10 + (long)str[i++] - '0';
+		nb = nb * 10 + (int)str[i++] - '0';
 	return (nb * sign);
 }
 
-bool cmp(char *s1, char *s2)
+bool	cmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
 		i++;
-	return (s1[i] - s2[i] == 0 ? true : false);
+	return (s1[i] - s2[i] == 0);
 }
 
 int	ft_isdigit(int c)
@@ -39,19 +39,19 @@ int	ft_isdigit(int c)
 	return (false);
 }
 
-int ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-    int i;
+	int	i;
 
 	i = 0;
-    while (s[i])
-        i++;
-    return i;
+	while (s[i])
+		i++;
+	return (i);
 }
 
-bool max_int(char *s)
+bool	max_int(char *s)
 {
-	long test;
+	long	test;
 
 	test = ft_atoi(s);
 	if (test > INT_MAX || test < INT_MIN)

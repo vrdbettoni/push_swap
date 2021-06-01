@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int		i;
-	int		nb;
-	int		sign;
+	int	i;
+	int	nb;
+	int	sign;
 
 	sign = 1;
 	i = 0;
@@ -22,12 +22,28 @@ int		ft_atoi(const char *str)
 	return (nb * sign);
 }
 
-bool cmp(char *s1, char *s2)
+bool	cmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
 		i++;
-	return (s1[i] - s2[i] == 0 ? true : false);
+	return (s1[i] - s2[i] == 0);
+}
+
+void	free_all(t_stack *stack)
+{
+	if (stack->node)
+		stack->node->prev->next = NULL;
+	while (stack->node->next)
+	{
+		stack->node = stack->node->next;
+		free(stack->node->prev);
+		stack->node->prev = NULL;
+	}
+	free(stack->node);
+	stack->node = NULL;
+	free(stack);
+	stack = NULL;
 }
